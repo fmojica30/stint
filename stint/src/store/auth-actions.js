@@ -1,16 +1,26 @@
-import { authActions } from "./auth";
-import PocketBase from 'pocketbase';
+import { authActions } from "./auth-slice";
+import PocketBase from "pocketbase";
 
-export async function authenticatePb() {
+export const PBauthenticate = (authData) => {
   return async (dispatch) => {
+    dispatch(authActions.loading);
 
-    const sendRequest = async () => {
+    const sendAuthRequest = async () => {
       const pb = new PocketBase("http://127.0.0.1:8090/");
-      const authData = await pb.collection('users').authWithPassword('test_user1', "password");
+      await pb
+        .collection("users")
+        .authWithPassword(authData.email, authData.pass);
+      return pb;
+    };
 
+    try {
+      const pb = await sendAuthRequest();
+      dispatch(authActions.setAuth(pb.authStore.token));
+    } catch (error) {
+      console.log(error);
     }
 
-  }
+    dispatch(authActions.loading);
 
-
-}
+  };
+};
