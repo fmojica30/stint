@@ -8,6 +8,7 @@ function NavBar() {
     useEffect(() => {
         auth = JSON.parse(localStorage.getItem('authStore'));
         console.log(auth);
+        console.log(import.meta.env.VITE_DB);
     }, [])
 
   return (

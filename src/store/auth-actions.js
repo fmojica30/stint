@@ -6,7 +6,7 @@ export const PBauthenticate = (authData) => {
     dispatch(authActions.loading);
 
     const sendAuthRequest = async () => {
-      const pb = new PocketBase("http://127.0.0.1:8090/");
+      const pb = new PocketBase(import.meta.env.VITE_DB);
       await pb
         .collection("users")
         .authWithPassword(authData.email, authData.pass);
