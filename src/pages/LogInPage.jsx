@@ -10,10 +10,15 @@ function LogInPage() {
   const userInputRef = useRef();
   const passInputRef = useRef();
   const dispatch = useDispatch();
+
   const authSubmitHandler = async (event) => {
     event.preventDefault();
-
-    dispatch(PBauthenticate({email: userInputRef.current.value, pass: passInputRef.current.value }))
+    dispatch(
+      PBauthenticate({
+        email: userInputRef.current.value,
+        pass: passInputRef.current.value,
+      })
+    );
   };
 
   return (
