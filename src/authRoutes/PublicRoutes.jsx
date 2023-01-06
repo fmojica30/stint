@@ -6,7 +6,7 @@ const useAuth = () => {
 };
 const PublicRoutes = () => {
   let auth = useAuth();
-  return auth ? <Navigate to="/p1" /> : <Outlet />;
+  return auth ? <Navigate to="/dashboard" /> : <Outlet />;
 };
 
 export default PublicRoutes;
