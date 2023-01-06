@@ -15,7 +15,8 @@ export const PBauthenticate = (authData) => {
 
     try {
       const pb = await sendAuthRequest();
-      dispatch(authActions.setAuth(pb.authStore.token));
+      dispatch(authActions.authenticate());
+      window.location.reload(false);
     } catch (error) {
       console.log(error);
     }
