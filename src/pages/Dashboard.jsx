@@ -5,11 +5,9 @@ import DashboardProfileCard from "../components/DashboardProfileCard/DashBoardPr
 import { getCurrentCampaign } from "../store/userData-actions";
 import { userDataActions } from "../store/userData-slice";
 
-
 const Dashboard = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCurrentCampaign());
   }, []);
 
   return (
