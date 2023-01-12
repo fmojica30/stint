@@ -2,24 +2,29 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useMutation } from "@tanstack/react-query";
 
 import { useNavigate } from "react-router-dom";
 import { PBauthenticate } from "../store/auth-actions";
 import { Card, Col, Container, Row } from "react-bootstrap";
+import { logIn } from "../Query/AuthQueries";
+import pb from "../lib/pocketbase";
 
 function LogInPage() {
   const userInputRef = useRef();
   const passInputRef = useRef();
-  const auth = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const authSubmitHandler = async (event) => {
     event.preventDefault();
     const user = userInputRef.current.value;
     const pass = passInputRef.current.value;
-    await dispatch(PBauthenticate({ email: user, pass: pass }));
-    navigate('/dashboard');
+    try {
+      await pb.collection("users").authWithPassword(user, pass);
+      navigate("/dashboard");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

@@ -6,7 +6,7 @@ const DashboardProfileCard = (props) => {
     <Card>
       <Card.Img variant="top" src="../../assets/placeholder.jpg" />
       <Card.Body>
-        <Card.Title>Level 1</Card.Title>
+        <Card.Title>{console.log(props.currentCampaign)}</Card.Title>
         <ProgressBar animated now={60} />
       </Card.Body>
     </Card>

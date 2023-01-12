@@ -8,7 +8,7 @@ const initialUserDataState = {
 }
 
 const userDataSlice = createSlice({
-  name: "data",
+  name: "userData",
   initialState: initialUserDataState,
   reducers: {
     setCurrentCampaign(state, action) {

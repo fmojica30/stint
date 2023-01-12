@@ -1,26 +1,39 @@
 import { useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap"
-import { useDispatch, useSelector } from "react-redux";
+import { Container, Row, Col } from "react-bootstrap";
 import DashboardProfileCard from "../components/DashboardProfileCard/DashBoardProfileCard";
-import { getCurrentCampaign } from "../store/userData-actions";
-import { userDataActions } from "../store/userData-slice";
+import { getCampaigns } from "../Query/DashboardQueries";
+import { getCurrentCampaign } from "../Query/DashboardQueries";
+
+import { useQuery } from "@tanstack/react-query";
+import { getCampaignData } from "../utils/dashboardAPI";
 
 const Dashboard = () => {
-  const dispatch = useDispatch();
-  const cc = useSelector((state) => state.auth.isAuthenticated);
-  useEffect(() => {
-    dispatch(getCurrentCampaign());
-  }, []);
+  
+  // const {
+  //   status,
+  //   error,
+  //   data: currentCampaign,
+  // } = useQuery({
+  //   querykey: ["currentCampaign"],
+  //   queryFn: getCurrentCampaign
+  // });
+  
+  // const {
+  //   status: campaignsStatus,
+  //   error: campaignsError,
+  //   data: campaigns,
+  // } = useQuery({
+  //   querykey: ["campaigns"],
+  //   queryFn: getCampaigns
+  // });
 
   return (
     <Container className="m-5">
       <Row>
         <Col md={3}>
-          <DashboardProfileCard currentCampaign={cc}/>
+          <DashboardProfileCard currentCampaign={campaigns} />
         </Col>
-        <Col md={9}>
-          SP2
-        </Col>
+        <Col md={9}>SP2</Col>
       </Row>
       <Row>
         <Col>
@@ -28,7 +41,7 @@ const Dashboard = () => {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
 export default Dashboard;
