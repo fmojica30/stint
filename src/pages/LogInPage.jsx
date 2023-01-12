@@ -1,25 +1,25 @@
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Alert from "react-bootstrap/Alert";
 
+import { useNavigate } from "react-router-dom";
 import { PBauthenticate } from "../store/auth-actions";
 import { Card, Col, Container, Row } from "react-bootstrap";
 
 function LogInPage() {
   const userInputRef = useRef();
   const passInputRef = useRef();
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const authSubmitHandler = async (event) => {
     event.preventDefault();
-    dispatch(
-      PBauthenticate({
-        email: userInputRef.current.value,
-        pass: passInputRef.current.value,
-      })
-    );
+    const user = userInputRef.current.value;
+    const pass = passInputRef.current.value;
+    await dispatch(PBauthenticate({ email: user, pass: pass }));
+    navigate('/dashboard');
   };
 
   return (

@@ -11,8 +11,9 @@ export const getCurrentCampaign = () => {
 
     try {
       const data = await sendCurrentCampaignRequest();
-      console.log(data);
-      dispatch(userDataActions.setCurrentCampaign({ cc: data }));
+      console.log(data.items[0].name);
+      const name = data.items[0].name;
+      dispatch(userDataActions.setCurrentCampaign({ cc: name }));
     } catch (err) {
       console.log(err);
     }
