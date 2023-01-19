@@ -9,14 +9,6 @@ import { getCampaignData } from "../utils/dashboardAPI";
 
 const Dashboard = () => {
   
-  // const {
-  //   status,
-  //   error,
-  //   data: currentCampaign,
-  // } = useQuery({
-  //   querykey: ["currentCampaign"],
-  //   queryFn: getCurrentCampaign
-  // });
   
   // const {
   //   status: campaignsStatus,
@@ -31,7 +23,7 @@ const Dashboard = () => {
     <Container className="m-5">
       <Row>
         <Col md={3}>
-          <DashboardProfileCard currentCampaign={campaigns} />
+          <DashboardProfileCard  />
         </Col>
         <Col md={9}>SP2</Col>
       </Row>
